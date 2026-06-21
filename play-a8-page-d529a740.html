@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a8体育 · 日常赛事查询与延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f5ef;
+            font-family: 'Georgia', 'Songti SC', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #2e2b27;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 760px;
+            width: 100%;
+            background-color: #fefcf8;
+            padding: 2.5rem 2rem;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+            margin: 1.5rem 0;
+        }
+
+        /* hero 开场短句 */
+        .hero {
+            margin-bottom: 2rem;
+            border-left: 4px solid #c7b7a4;
+            padding-left: 1.25rem;
+        }
+
+        .hero p {
+            font-size: 1.55rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: #3d3530;
+            line-height: 1.4;
+        }
+
+        .hero .sub {
+            margin-top: 0.6rem;
+            font-size: 0.95rem;
+            color: #7a6e65;
+            font-style: italic;
+        }
+
+        /* 承接段落 */
+        .intro p {
+            margin-bottom: 1.4rem;
+            font-size: 1rem;
+            text-indent: 2em;
+        }
+
+        .intro a {
+            color: #8b6f5c;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: background-color 0.2s;
+        }
+
+        .intro a:hover {
+            background-color: #efe6dd;
+            text-decoration: none;
+        }
+
+        /* 特点列表 — 更像是卡片式的小块 */
+        .feature-section {
+            margin: 2.2rem 0;
+        }
+
+        .feature-section h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            border-bottom: 1px dashed #d4cac0;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1.2rem;
+            color: #4a3f39;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .feature-item {
+            background: #f7f2eb;
+            padding: 1.1rem 1.2rem;
+            border-radius: 14px;
+            flex: 1 1 180px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+        }
+
+        .feature-item .emoji-label {
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 0.2rem;
+            opacity: 0.7;
+        }
+
+        .feature-item strong {
+            font-weight: 600;
+            color: #574a42;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-item p {
+            font-size: 0.92rem;
+            color: #5e5249;
+            text-indent: 0;
+        }
+
+        /* 引用块 / 提示框 */
+        .tip-box {
+            background: #f3ede6;
+            padding: 1.4rem 1.6rem;
+            border-radius: 20px;
+            margin: 2rem 0 1.6rem 0;
+            position: relative;
+            border: 1px solid #e2d5c9;
+        }
+
+        .tip-box::before {
+            content: "📌 延伸阅读";
+            display: block;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            color: #7a6b5d;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .tip-box p {
+            font-size: 0.98rem;
+            margin-bottom: 0.7rem;
+            text-indent: 0;
+        }
+
+        .tip-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip-box a {
+            color: #8b6f5c;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .tip-box a:hover {
+            background-color: #ddd2c5;
+            text-decoration: none;
+        }
+
+        /* 温和结尾 */
+        .closing {
+            margin-top: 2.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e1d5ca;
+            font-size: 0.95rem;
+            color: #675b52;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .closing .signature {
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        .closing a {
+            color: #7a6b5d;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .closing a:hover {
+            background-color: #efe6dd;
+            text-decoration: none;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 540px) {
+            .container {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .hero p {
+                font-size: 1.3rem;
+            }
+
+            .feature-item {
+                flex: 1 1 100%;
+            }
+
+            .closing {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .container {
+                padding: 1.2rem 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 开场短句 -->
+        <div class="hero">
+            <p>翻看赛程，对照数据，偶尔也想知道一场比赛的背景故事。</p>
+            <div class="sub">—— 从日常查询到延伸阅读，一个更安静的起点。</div>
+        </div>
+
+        <!-- 承接段落：日常场景 -->
+        <div class="intro">
+            <p>
+                有时候只是想看一眼今晚的联赛排名，或者某个球员的近五场效率。慢慢就养成习惯了：打开 <a href="https://play-a8.com">a8体育</a>，
+                先扫一眼即时比分，再点开某支球队的近期走势。页面里没有喧哗的弹窗，也没有必须登录才能用的功能，
+                这让我这种只想安静查点东西的人觉得舒服。
+            </p>
+            <p>
+                后来发现，除了基础的赛程和积分，还能顺着页面里的推荐读到一些战术简析或历史数据对照。
+                有时候明明只是想验证一个比分，结果却在一篇关于阵型变化的短文里多待了十分钟。这种「顺路看看」的体验
+                大概就是所谓延伸阅读的魅力——没有压力，但总有收获。
+            </p>
+        </div>
+
+        <!-- 特点列表（卡片化） -->
+        <div class="feature-section">
+            <h2>日常使用中感到顺手的地方</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="emoji-label">📋</span>
+                    <strong>赛程对照</strong>
+                    <p>按日期、联赛或球队排列，一眼看清未来一周的密集赛程。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji-label">📊</span>
+                    <strong>数据延伸</strong>
+                    <p>不只是比分，还有赛季平均、主客场差异等可横向对比的维度。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji-label">📎</span>
+                    <strong>相关阅读</strong>
+                    <p>每个比赛日页面下会附带背景文章，适合赛前或赛后翻阅。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji-label">🔍</span>
+                    <strong>简洁搜索</strong>
+                    <p>直接输入队名或关键词就能定位，省去翻菜单的步骤。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 引用块 / 提示框 —— 延伸阅读场景 -->
+        <div class="tip-box">
+            <p>
+                如果你也习惯在看比赛前先查一下双方过往交手记录，或者想找某篇关于青训体系的短文，
+                不妨在 <a href="https://play-a8.com">a8体育</a> 的搜索框里输入关键词。很多时候，
+                我都是因为一个偶然的对照需求，最后读到了完全没想到的战术讨论或历史回顾。
+            </p>
+            <p>
+                这种「从数据到故事」的过渡并不刻意，页面布局本身也留出了足够的呼吸感，
+                不会让你觉得被信息推着走。对于只想安静做功课的人而言，算是一个恰到好处的角落。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要风格（轻量嵌入） -->
+        <div style="margin: 1.8rem 0 0.8rem 0; background: transparent;">
+            <details style="cursor: pointer; color: #4f443d; font-size: 0.95rem; border: 1px solid #e2d5c9; border-radius: 12px; padding: 0.6rem 1rem;">
+                <summary style="font-weight: 500; outline: none;">📌 一些常见疑问 · 摘要</summary>
+                <div style="margin-top: 0.8rem; padding-left: 0.3rem;">
+                    <p style="margin-bottom: 0.4rem;"><strong>页面内容更新频率？</strong><br>通常赛前半小时到一小时内更新首发和最新数据，赛后次日补充详细统计。</p>
+                    <p style="margin-bottom: 0.4rem;"><strong>可以只看某一支球队的页面吗？</strong><br>可以，搜索队名或使用联赛板块下的球队筛选即可聚焦。</p>
+                    <p style="margin-bottom: 0;"><strong>延伸阅读的文章是谁写的？</strong><br>部分为站内编辑整理，部分为外部授权转载，标注来源。</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="closing">
+            <span>愿每一次查询都恰好找到你想看的。</span>
+            <span class="signature">—— 来自 <a href="https://play-a8.com">a8体育</a> 的一则侧记</span>
+        </div>
+    </div>
+</body>
+</html>
